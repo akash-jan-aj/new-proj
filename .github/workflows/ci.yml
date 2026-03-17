@@ -13,11 +13,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Debug Paths
+      - name: Build Docker Image
         run: |
+          echo "USERNAME=${{ secrets.DOCKER_USERNAME }}"
           pwd
-          ls -a
           ls -R
+          docker build -t test-image ./backend
 
 
       - name: Login to Docker Hub
